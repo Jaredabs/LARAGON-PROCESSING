@@ -1,0 +1,22 @@
+<?php
+use App\Models\Sensor;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\DB;
+
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register web routes for your application. These
+| routes are loaded by the RouteServiceProvider and all of them will
+| be assigned to the "web" middleware group. Make something great!
+|
+*/
+
+Route::get('/', function () {
+
+    $datos = Sensor::orderBy('created_at','desc')->take(20)->pluck('sensor1');
+     //de sensores, ordena descendente(mas nuevo al viejo), dame ultimos 20 y solo dame datos de el campo sensor1
+    return view('welcome',compact('datos'));//enviaselo al html welcome.blade
+});
